@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sewna | Connect with Independent Fashion Designers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00b67f",
+              secondary: "#000000",
+              accent: "#00d68f",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Clash Display", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        overflow-x: hidden;
+      }
+
+      /* Custom styles for request flow */
+      .request-flow-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      }
+
+      .request-flow-container {
+        background: white;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 900px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-black">
+    <!-- Navigation Component -->
+    <custom-navbar></custom-navbar>
+
+    <!-- Hero Section -->
+    <section
+      class="relative h-screen flex items-center justify-center overflow-hidden hero-section"
+    >
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white to-transparent z-10"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10"
+        ></div>
+        <img
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1800&q=80"
+          alt="Fashion designer at work"
+          class="w-full h-full object-cover object-center"
+        />
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <div
+          class="inline-block bg-primary/10 text-primary px-6 py-2 rounded-full text-sm font-medium mb-8"
+        >
+          Where fashion dreams take shape
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl lg:text-8xl font-display font-semibold leading-tight mb-8"
+        >
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
+            >Your Vision,</span
+          ><br />
+          <span class="font-light">Their Craftsmanship</span>
+        </h1>
+
+        <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-600">
+          Connect with world-class independent fashion designers who transform
+          your ideas into stunning, custom-made outfits.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row gap-6 justify-center max-w-4xl mx-auto"
+        >
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer"
+            onclick="startClientFlow()"
+          >
+            <div class="flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all"
+              >
+                <i data-feather="user" class="text-primary w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">I Need a Designer</h3>
+              <p class="text-gray-500 text-center mb-4">
+                Find the perfect designer to bring your vision to life
+              </p>
+              <div class="flex items-center text-primary font-medium">
+                Get started
+                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer"
+            onclick="startDesignerFlow()"
+          >
+            <div class="flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all"
+              >
+                <i data-feather="scissors" class="text-primary w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">I Am a Designer</h3>
+              <p class="text-gray-500 text-center mb-4">
+                Showcase your talent and connect with clients
+              </p>
+              <div class="flex items-center text-primary font-medium">
+                Join our community
+                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+        <i
+          data-feather="chevron-down"
+          class="animate-bounce text-gray-400 w-8 h-8"
+        ></i>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-12">
+      <div class="container mx-auto px-6">
+        <custom-search></custom-search>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-display font-semibold mb-4">
+            How Sewna Works
+          </h2>
+          <p class="text-gray-500 max-w-2xl mx-auto">
+            Simple steps to connect with talented designers or showcase your
+            work
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <span class="text-primary font-bold">1</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Share Your Vision</h3>
+            <p class="text-gray-500">
+              Describe what you're looking for or showcase your design portfolio
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <span class="text-primary font-bold">2</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Find Your Match</h3>
+            <p class="text-gray-500">
+              We'll connect you with the perfect designer or client based on
+              your needs
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <span class="text-primary font-bold">3</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Bring It to Life</h3>
+            <p class="text-gray-500">
+              Collaborate directly to create something truly special
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Designers Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-display font-semibold mb-4">
+            Featured Designers
+          </h2>
+          <p class="text-gray-500 max-w-2xl mx-auto">
+            Discover talented designers from around the world
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div class="h-64 bg-gray-100 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80"
+                alt="Designer work"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                    alt="Designer"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-semibold">Sophia Chen</h3>
+                  <p class="text-sm text-gray-500">Bridal & Evening Wear</p>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Specializing in luxurious wedding gowns and red carpet looks
+                with a modern twist.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <i data-feather="map-pin" class="w-4 h-4 mr-1"></i>
+                <span>New York, USA</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div class="h-64 bg-gray-100 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80"
+                alt="Designer work"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                    alt="Designer"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-semibold">Marcus Johnson</h3>
+                  <p class="text-sm text-gray-500">
+                    Streetwear & Urban Fashion
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Creating bold streetwear that blends urban culture with high
+                fashion.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <i data-feather="map-pin" class="w-4 h-4 mr-1"></i>
+                <span>London, UK</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div class="h-64 bg-gray-100 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=720&q=80"
+                alt="Designer work"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                    alt="Designer"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-semibold">Priya Patel</h3>
+                  <p class="text-sm text-gray-500">Sustainable Fashion</p>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Eco-conscious designs that combine traditional techniques with
+                contemporary styles.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <i data-feather="map-pin" class="w-4 h-4 mr-1"></i>
+                <span>Mumbai, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="#"
+            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full font-medium text-gray-700 hover:border-primary hover:text-primary transition-all"
+          >
+            Browse all designers
+            <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-display font-semibold mb-4">
+            What Our Community Says
+          </h2>
+          <p class="text-gray-500 max-w-2xl mx-auto">
+            Hear from designers and clients who've created something special
+            together
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div class="flex items-center mb-6">
+              <div class="text-primary flex">
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "Working with Sophia through Sewna was an absolute dream. She took
+              my vague ideas and turned them into the most beautiful wedding
+              dress I could imagine."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                  alt="Client"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 class="font-semibold">Emily Rodriguez</h3>
+                <p class="text-sm text-gray-500">Bride, New York</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div class="flex items-center mb-6">
+              <div class="text-primary flex">
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "As an independent designer, Sewna has given me access to clients
+              who truly appreciate custom work. The platform is so easy to use
+              and connects me with the perfect clients."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                  alt="Designer"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 class="font-semibold">Marcus Johnson</h3>
+                <p class="text-sm text-gray-500">Featured Designer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-sm">
+            <div class="flex items-center mb-6">
+              <div class="text-primary flex">
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "I needed a sustainable option for my fashion line and found Priya
+              through Sewna. Her expertise in eco-friendly materials was exactly
+              what my brand needed."
+            </p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+                  alt="Client"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 class="font-semibold">Alex Turner</h3>
+                <p class="text-sm text-gray-500">Founder, Green Threads</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary to-accent text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-display font-semibold mb-6">
+          Ready to Create Something Unique?
+        </h2>
+        <p class="text-white/90 max-w-2xl mx-auto mb-10">
+          Whether you're looking for a designer or ready to showcase your
+          talent, we're here to make it happen.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="startClientFlow()"
+            class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-medium hover:bg-gray-100 transition-all"
+          >
+            Find a Designer
+            <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+          </button>
+          <button
+            onclick="startDesignerFlow()"
+            class="inline-flex items-center px-8 py-4 border border-white text-white rounded-full font-medium hover:bg-white/10 transition-all"
+          >
+            Join as Designer
+            <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Component -->
+    <custom-footer></custom-footer>
+
+    <!-- Request Flow Overlay -->
+    <div id="request-flow-overlay" class="request-flow-overlay hidden">
+      <div class="request-flow-container">
+        <custom-request-flow id="custom-request-flow"></custom-request-flow>
+      </div>
+    </div>
+
+    <!-- Designer Onboarding Flow (Hidden) -->
+    <div
+      id="designer-flow"
+      class="fixed inset-0 bg-white z-50 overflow-y-auto hidden"
+    >
+      <!-- This would be populated by JavaScript when the user clicks "I Am a Designer" -->
+    </div>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/search.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/request-flow.js"></script>
+    <script src="script.js"></script>
+    <script>
+      feather.replace();
+
+      function startDesignerFlow() {
+        // This would load the designer onboarding flow
+        document.getElementById("designer-flow").classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function startClientFlow() {
+        // Show the request flow overlay
+        const overlay = document.getElementById("request-flow-overlay");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+
+        // Add event listener to handle closing the flow
+        const requestFlow = document.getElementById("custom-request-flow");
+        if (requestFlow) {
+          requestFlow.addEventListener("close-flow", function () {
+            overlay.classList.add("hidden");
+            document.body.style.overflow = "auto";
+          });
+        }
+      }
+
+      // Close overlay when clicking outside the container
+      document
+        .getElementById("request-flow-overlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.classList.add("hidden");
+            document.body.style.overflow = "auto";
+          }
+        });
+    </script>
+  </body>
+</html>
