@@ -57,6 +57,16 @@
       .price-option input:checked + div span {
         color: #00b67f;
       }
+
+      /* Enhanced hover effects */
+      .btn-hover {
+        transition: all 0.3s ease;
+      }
+
+      .btn-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
     </style>
     <script>
       tailwind.config = {
@@ -78,7 +88,7 @@
   </head>
   <body class="bg-white text-black">
     <!-- Navigation Component -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav class="sticky top-0 z-50 bg-none/90 backdrop-blur-sm">
       <div class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
@@ -97,12 +107,12 @@
               >How It Works</a
             >
             <a
-              href="#"
+              href="about.html"
               class="text-gray-600 hover:text-primary transition-colors"
               >About</a
             >
             <a
-              href="#"
+              href="contact.html"
               class="text-gray-600 hover:text-primary transition-colors"
               >Contact</a
             >
@@ -113,7 +123,7 @@
             </button>
             <button
               onclick="startDesignerFlow()"
-              class="bg-primary text-white px-4 py-2 rounded-full hover:bg-accent transition-colors"
+              class="bg-primary text-white px-4 py-2 rounded-full hover:bg-accent transition-all duration-300 btn-hover"
             >
               Join as Designer
             </button>
@@ -141,6 +151,7 @@
       </div>
 
       <div class="container mx-auto px-6 relative z-10 text-center">
+        <br />
         <div
           class="inline-block bg-primary/10 text-primary px-6 py-2 rounded-full text-sm font-medium mb-8"
         >
@@ -148,7 +159,7 @@
         </div>
 
         <h1
-          class="text-5xl md:text-7xl lg:text-8xl font-display font-semibold leading-tight mb-8"
+          class="text-5xl md:text-7xl lg:text-8xl font-display font-semibold leading-tight mb-4"
         >
           <span
             class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
@@ -156,6 +167,11 @@
           ><br />
           <span class="font-light">Their Craftsmanship</span>
         </h1>
+
+        <!-- Enhanced tagline -->
+        <p class="text-xl md:text-2xl text-gray-600 mb-8 font-light italic">
+          Where creativity meets individuality
+        </p>
 
         <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-600">
           Connect with world-class independent fashion designers who transform
@@ -166,7 +182,7 @@
           class="flex flex-col md:flex-row gap-6 justify-center max-w-4xl mx-auto"
         >
           <div
-            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer"
+            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer btn-hover"
             onclick="startClientFlow()"
           >
             <div class="flex flex-col items-center">
@@ -180,14 +196,14 @@
                 Find the perfect designer to bring your vision to life
               </p>
               <div class="flex items-center text-primary font-medium">
-                Get started
+                Find Yours
                 <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
               </div>
             </div>
           </div>
 
           <div
-            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer"
+            class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-primary/30 transition-all duration-300 group hover:shadow-md cursor-pointer btn-hover"
             onclick="startDesignerFlow()"
           >
             <div class="flex flex-col items-center">
@@ -201,7 +217,7 @@
                 Showcase your talent and connect with clients
               </p>
               <div class="flex items-center text-primary font-medium">
-                Join our community
+                Get Started
                 <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
               </div>
             </div>
@@ -216,7 +232,7 @@
         ></i>
       </div>
     </section>
-
+    <br />
     <!-- Search Section -->
     <section class="py-12">
       <div class="container mx-auto px-6">
@@ -242,7 +258,7 @@
                   <option>Mumbai</option>
                 </select>
                 <button
-                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-accent transition-colors"
+                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-accent transition-all duration-300 btn-hover"
                 >
                   Search
                 </button>
@@ -267,11 +283,13 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div
               class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
             >
-              <span class="text-primary font-bold">1</span>
+              <i data-feather="edit-3" class="text-primary w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Share Your Vision</h3>
             <p class="text-gray-500">
@@ -279,11 +297,13 @@
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div
               class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
             >
-              <span class="text-primary font-bold">2</span>
+              <i data-feather="search" class="text-primary w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Find Your Match</h3>
             <p class="text-gray-500">
@@ -292,11 +312,13 @@
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div
               class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
             >
-              <span class="text-primary font-bold">3</span>
+              <i data-feather="heart" class="text-primary w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-semibold mb-3">Bring It to Life</h3>
             <p class="text-gray-500">
@@ -321,7 +343,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
           >
             <div class="h-64 bg-gray-100 relative overflow-hidden">
               <img
@@ -356,7 +378,7 @@
           </div>
 
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
           >
             <div class="h-64 bg-gray-100 relative overflow-hidden">
               <img
@@ -393,7 +415,7 @@
           </div>
 
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+            class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
           >
             <div class="h-64 bg-gray-100 relative overflow-hidden">
               <img
@@ -431,7 +453,7 @@
         <div class="text-center mt-12">
           <a
             href="#"
-            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full font-medium text-gray-700 hover:border-primary hover:text-primary transition-all"
+            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full font-medium text-gray-700 hover:border-primary hover:text-primary transition-all btn-hover"
           >
             Browse all designers
             <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
@@ -454,7 +476,9 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div class="flex items-center mb-6">
               <div class="text-primary flex">
                 <i data-feather="star" class="w-5 h-5 fill-current"></i>
@@ -484,7 +508,9 @@
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div class="flex items-center mb-6">
               <div class="text-primary flex">
                 <i data-feather="star" class="w-5 h-5 fill-current"></i>
@@ -514,7 +540,9 @@
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-xl shadow-sm">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 btn-hover"
+          >
             <div class="flex items-center mb-6">
               <div class="text-primary flex">
                 <i data-feather="star" class="w-5 h-5 fill-current"></i>
@@ -560,14 +588,14 @@
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onclick="startClientFlow()"
-            class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-medium hover:bg-gray-100 transition-all"
+            class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-medium hover:bg-gray-100 transition-all btn-hover"
           >
             Find a Designer
             <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
           </button>
           <button
             onclick="startDesignerFlow()"
-            class="inline-flex items-center px-8 py-4 border border-white text-white rounded-full font-medium hover:bg-white/10 transition-all"
+            class="inline-flex items-center px-8 py-4 border border-white text-white rounded-full font-medium hover:bg-white/10 transition-all btn-hover"
           >
             Join as Designer
             <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
@@ -585,10 +613,37 @@
               <div class="w-8 h-8 bg-primary rounded-lg"></div>
               <span class="text-xl font-display font-semibold">SEWNA</span>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400 mb-6">
               Connecting fashion designers with clients worldwide to create
               unique, custom-made outfits.
             </p>
+            <!-- Social Media Icons -->
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i data-feather="instagram" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i data-feather="twitter" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i data-feather="facebook" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i data-feather="linkedin" class="w-5 h-5"></i>
+              </a>
+            </div>
           </div>
           <div>
             <h3 class="font-semibold mb-4">For Clients</h3>
@@ -654,7 +709,7 @@
         <div
           class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
         >
-          <p>&copy; 2024 SEWNA. All rights reserved.</p>
+          <p>&copy; 2025 SEWNA. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -1661,9 +1716,6 @@
     </script>
 
     <!-- Designer Flow JavaScript -->
-    <!-- SIMPLE Designer Flow JavaScript -->
-    <!-- Designer Flow JavaScript - Same Popup Style -->
-    <!-- Designer Flow JavaScript - Same Popup Style -->
     <script>
       // Designer Flow Functions
       function startDesignerFlow() {
