@@ -7,24 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#00b67f",
-              secondary: "#000000",
-              accent: "#00d68f",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              display: ["Clash Display", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap");
@@ -36,7 +18,6 @@
         overflow-x: hidden;
       }
 
-      /* Custom styles for request flow */
       .request-flow-overlay {
         position: fixed;
         top: 0;
@@ -60,11 +41,86 @@
         overflow-y: auto;
         position: relative;
       }
+
+      /* Designer flow styles */
+      .form-step {
+        transition: all 0.3s ease;
+      }
+
+      .specialty-option input:checked + div,
+      .price-option input:checked + div {
+        border-color: #00b67f;
+        background-color: rgba(0, 182, 127, 0.05);
+      }
+
+      .specialty-option input:checked + div i,
+      .price-option input:checked + div span {
+        color: #00b67f;
+      }
     </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00b67f",
+              secondary: "#000000",
+              accent: "#00d68f",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Clash Display", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
   </head>
   <body class="bg-white text-black">
     <!-- Navigation Component -->
-    <custom-navbar></custom-navbar>
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-primary rounded-lg"></div>
+            <span class="text-xl font-display font-semibold">SEWNA</span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >Designers</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >How It Works</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >About</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >Contact</a
+            >
+          </div>
+          <div class="flex items-center space-x-4">
+            <button class="text-gray-600 hover:text-primary transition-colors">
+              Sign In
+            </button>
+            <button
+              onclick="startDesignerFlow()"
+              class="bg-primary text-white px-4 py-2 rounded-full hover:bg-accent transition-colors"
+            >
+              Join as Designer
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- Hero Section -->
     <section
@@ -164,7 +220,36 @@
     <!-- Search Section -->
     <section class="py-12">
       <div class="container mx-auto px-6">
-        <custom-search></custom-search>
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="bg-white rounded-2xl shadow-sm border border-gray-100 p-2"
+          >
+            <div class="flex flex-col md:flex-row gap-2">
+              <div class="flex-1">
+                <input
+                  type="text"
+                  placeholder="Search for designers, styles, or specialties..."
+                  class="w-full px-4 py-3 border-0 focus:ring-0 focus:outline-none"
+                />
+              </div>
+              <div class="flex gap-2">
+                <select
+                  class="px-4 py-3 border-0 bg-gray-50 rounded-lg focus:ring-0 focus:outline-none"
+                >
+                  <option>Location</option>
+                  <option>New York</option>
+                  <option>London</option>
+                  <option>Mumbai</option>
+                </select>
+                <button
+                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-accent transition-colors"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -491,8 +576,88 @@
       </div>
     </section>
 
-    <!-- Footer Component -->
-    <custom-footer></custom-footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-6">
+              <div class="w-8 h-8 bg-primary rounded-lg"></div>
+              <span class="text-xl font-display font-semibold">SEWNA</span>
+            </div>
+            <p class="text-gray-400">
+              Connecting fashion designers with clients worldwide to create
+              unique, custom-made outfits.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">For Clients</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Find Designers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >How It Works</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">For Designers</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Join Platform</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Designer Resources</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Success Stories</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">Company</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 SEWNA. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- Request Flow Overlay -->
     <div id="request-flow-overlay" class="request-flow-overlay hidden">
@@ -501,35 +666,2000 @@
       </div>
     </div>
 
-    <!-- Designer Onboarding Flow (Hidden) -->
+    <!-- Designer Onboarding Flow -->
     <div
       id="designer-flow"
       class="fixed inset-0 bg-white z-50 overflow-y-auto hidden"
-    >
-      <!-- This would be populated by JavaScript when the user clicks "I Am a Designer" -->
-    </div>
+    ></div>
 
-    <script src="components/navbar.js"></script>
-    <script src="components/search.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="components/request-flow.js"></script>
-    <script src="script.js"></script>
+    <!-- Client Request Flow Component -->
     <script>
-      feather.replace();
+      class CustomRequestFlow extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `
+            <style>
+              .request-flow {
+                min-height: 100vh;
+                padding: 20px;
+                background: #ffffff;
+              }
 
+              .flow-container {
+                max-width: 800px;
+                margin: 0 auto;
+              }
+
+              .flow-header {
+                text-align: center;
+                margin-bottom: 40px;
+                padding-top: 20px;
+              }
+
+              .back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 24px;
+                background: transparent;
+                border: 2px solid #000000;
+                font-size: 14px;
+                cursor: pointer;
+                margin-bottom: 30px;
+                transition: all 0.3s;
+                font-weight: 500;
+                border-radius: 6px;
+              }
+
+              .back-btn:hover {
+                background: #000000;
+                color: #ffffff;
+              }
+
+              .flow-header h2 {
+                font-size: 36px;
+                font-weight: 300;
+                margin-bottom: 16px;
+                letter-spacing: -1px;
+              }
+
+              .flow-header p {
+                font-size: 18px;
+                color: #666;
+              }
+
+              /* Progress Bar */
+              .progress-bar {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40px;
+                position: relative;
+              }
+
+              .progress-bar::before {
+                content: '';
+                position: absolute;
+                top: 20px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: #e0e0e0;
+                z-index: 0;
+              }
+
+              .progress-fill {
+                position: absolute;
+                top: 20px;
+                left: 0;
+                height: 2px;
+                background: #00b67f;
+                z-index: 1;
+                transition: width 0.5s ease;
+              }
+
+              .progress-step {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                z-index: 2;
+                flex: 1;
+              }
+
+              .step-circle {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #ffffff;
+                border: 3px solid #e0e0e0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 600;
+                margin-bottom: 12px;
+                transition: all 0.3s;
+              }
+
+              .progress-step.active .step-circle {
+                background: #00b67f;
+                border-color: #00b67f;
+                color: #ffffff;
+                transform: scale(1.1);
+              }
+
+              .progress-step.completed .step-circle {
+                background: #00b67f;
+                border-color: #00b67f;
+                color: #ffffff;
+              }
+
+              .step-label {
+                font-size: 13px;
+                color: #999;
+                text-align: center;
+                font-weight: 500;
+              }
+
+              .progress-step.active .step-label {
+                color: #000000;
+                font-weight: 600;
+              }
+
+              /* Form Steps */
+              .form-step {
+                display: none;
+                background: #ffffff;
+                padding: 40px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                animation: fadeIn 0.5s;
+              }
+
+              .form-step.active {
+                display: block;
+              }
+
+              @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+
+              .form-group {
+                margin-bottom: 24px;
+              }
+
+              .form-group label {
+                display: block;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: #000000;
+              }
+
+              .form-group input,
+              .form-group textarea,
+              .form-group select {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #e0e0e0;
+                font-size: 15px;
+                transition: all 0.3s;
+                font-family: inherit;
+                background: #fafafa;
+                border-radius: 6px;
+                box-sizing: border-box;
+              }
+
+              .form-group input:focus,
+              .form-group textarea:focus,
+              .form-group select:focus {
+                outline: none;
+                border-color: #00b67f;
+                background: #ffffff;
+              }
+
+              .form-group textarea {
+                resize: vertical;
+                min-height: 120px;
+              }
+
+              /* Image Upload */
+              .upload-area {
+                border: 3px dashed #e0e0e0;
+                padding: 32px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: #fafafa;
+                position: relative;
+                overflow: hidden;
+                border-radius: 6px;
+              }
+
+              .upload-area.has-files {
+                border-style: solid;
+                border-color: #00b67f;
+                background: rgba(0, 182, 127, 0.05);
+              }
+
+              .upload-text {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 8px;
+                position: relative;
+                z-index: 1;
+              }
+
+              .upload-hint {
+                font-size: 13px;
+                color: #999;
+                position: relative;
+                z-index: 1;
+              }
+
+              .file-list {
+                display: none;
+                margin-top: 16px;
+                text-align: left;
+              }
+
+              .file-list.active {
+                display: block;
+              }
+
+              .file-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px;
+                background: #ffffff;
+                margin-bottom: 8px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+              }
+
+              .file-name {
+                font-size: 14px;
+                color: #000000;
+              }
+
+              .file-remove {
+                cursor: pointer;
+                color: #ff4444;
+                font-size: 18px;
+                background: none;
+                border: none;
+              }
+
+              /* Radio Options */
+              .radio-group {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 12px;
+              }
+
+              .radio-option {
+                position: relative;
+              }
+
+              .radio-option input {
+                position: absolute;
+                opacity: 0;
+              }
+
+              .radio-label {
+                display: block;
+                padding: 24px 20px;
+                border: 2px solid #e0e0e0;
+                cursor: pointer;
+                transition: all 0.3s;
+                text-align: center;
+                background: #fafafa;
+                border-radius: 6px;
+              }
+
+              .radio-option input:checked + .radio-label {
+                border-color: #00b67f;
+                background: rgba(0, 182, 127, 0.05);
+              }
+
+              .radio-text {
+                font-size: 16px;
+                font-weight: 500;
+              }
+
+              /* Budget Range */
+              .budget-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 12px;
+              }
+
+              .budget-option {
+                padding: 20px 16px;
+                border: 2px solid #e0e0e0;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: #fafafa;
+                border-radius: 6px;
+              }
+
+              .budget-option:hover,
+              .budget-option.selected {
+                border-color: #00b67f;
+                background: rgba(0, 182, 127, 0.05);
+                transform: translateY(-2px);
+              }
+
+              .budget-amount {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 4px;
+              }
+
+              .budget-label {
+                font-size: 12px;
+                color: #666;
+              }
+
+              /* Navigation Buttons */
+              .form-navigation {
+                display: flex;
+                gap: 12px;
+                margin-top: 32px;
+              }
+
+              .btn {
+                flex: 1;
+                padding: 16px 24px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: 2px solid #000000;
+                background: transparent;
+                border-radius: 6px;
+              }
+
+              .btn-primary {
+                background: #00b67f;
+                border-color: #00b67f;
+                color: #ffffff;
+              }
+
+              .btn-primary:hover {
+                background: #00a070;
+                border-color: #00a070;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 182, 127, 0.3);
+              }
+
+              .btn-secondary:hover {
+                background: #000000;
+                color: #ffffff;
+              }
+
+              /* Success Screen */
+              .success-screen {
+                display: none;
+                text-align: center;
+                padding: 60px 32px;
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+              }
+
+              .success-screen.active {
+                display: block;
+              }
+
+              .success-checkmark {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: #00b67f;
+                margin: 0 auto 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 40px;
+                animation: successPop 0.6s ease;
+              }
+
+              @keyframes successPop {
+                0% { transform: scale(0); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+              }
+
+              .success-title {
+                font-size: 36px;
+                font-weight: 300;
+                margin-bottom: 16px;
+              }
+
+              .success-text {
+                font-size: 18px;
+                color: #666;
+                margin-bottom: 32px;
+                line-height: 1.6;
+              }
+
+              .request-summary {
+                background: #fafafa;
+                padding: 24px;
+                margin: 24px 0;
+                text-align: left;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+              }
+
+              .summary-item {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #e0e0e0;
+              }
+
+              .summary-item:last-child {
+                border-bottom: none;
+              }
+
+              .summary-label {
+                font-weight: 600;
+                color: #666;
+              }
+
+              .summary-value {
+                color: #000000;
+              }
+
+              @media (max-width: 768px) {
+                .request-flow {
+                  padding: 16px;
+                }
+
+                .form-step {
+                  padding: 24px 16px;
+                }
+
+                .progress-bar {
+                  margin-bottom: 32px;
+                }
+
+                .step-label {
+                  font-size: 11px;
+                }
+
+                .radio-group {
+                  grid-template-columns: 1fr;
+                }
+
+                .budget-options {
+                  grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .flow-header h2 {
+                  font-size: 28px;
+                }
+                
+                .form-navigation {
+                  flex-direction: column;
+                }
+              }
+            </style>
+
+            <div class="request-flow" id="request-flow">
+              <div class="flow-container">
+                <button class="back-btn" id="back-btn">
+                  ← Back
+                </button>
+
+                <div class="flow-header">
+                  <h2>Create Your Custom Request</h2>
+                  <p>Let's bring your vision to life. Share your ideas and we'll match you with the perfect designer.</p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progress-fill" style="width: 25%"></div>
+                  <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">What & When</div>
+                  </div>
+                  <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Inspiration</div>
+                  </div>
+                  <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Details</div>
+                  </div>
+                  <div class="progress-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Budget</div>
+                  </div>
+                </div>
+
+                <!-- Step 1: Basic Info -->
+                <div class="form-step active" data-step="1">
+                  <div class="form-group">
+                    <label>What type of outfit are you looking for? *</label>
+                    <div class="radio-group">
+                      <div class="radio-option">
+                        <input type="radio" name="outfit-type" value="wedding" id="wedding">
+                        <label for="wedding" class="radio-label">
+                          <span class="radio-text">Wedding Wear</span>
+                        </label>
+                      </div>
+                      <div class="radio-option">
+                        <input type="radio" name="outfit-type" value="formal" id="formal">
+                        <label for="formal" class="radio-label">
+                          <span class="radio-text">Formal Wear</span>
+                        </label>
+                      </div>
+                      <div class="radio-option">
+                        <input type="radio" name="outfit-type" value="casual" id="casual">
+                        <label for="casual" class="radio-label">
+                          <span class="radio-text">Casual Wear</span>
+                        </label>
+                      </div>
+                      <div class="radio-option">
+                        <input type="radio" name="outfit-type" value="traditional" id="traditional">
+                        <label for="traditional" class="radio-label">
+                          <span class="radio-text">Traditional</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>When do you need it by? *</label>
+                    <input type="date" id="deadline" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Where will you wear this? (Optional)</label>
+                    <input type="text" placeholder="e.g., Wedding reception, Office party, Festival" id="occasion">
+                  </div>
+
+                  <div class="form-navigation">
+                    <button class="btn btn-primary" id="step1-btn">Continue →</button>
+                  </div>
+                </div>
+
+                <!-- Step 2: Inspiration -->
+                <div class="form-step" data-step="2">
+                  <div class="form-group">
+                    <label>Upload inspiration images (Optional)</label>
+                    <div class="upload-area" id="upload-area">
+                      <div class="upload-text">Click to upload or drag & drop</div>
+                      <div class="upload-hint">PNG, JPG up to 10MB each (Max 5 images)</div>
+                    </div>
+                    <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                    <div class="file-list" id="file-list"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Describe your vision *</label>
+                    <textarea placeholder="Tell us about colors, style, fabrics, or any specific details you have in mind..." id="description" required></textarea>
+                  </div>
+
+                  <div class="form-navigation">
+                    <button class="btn btn-secondary" id="step2-back">← Back</button>
+                    <button class="btn btn-primary" id="step2-btn">Continue →</button>
+                  </div>
+                </div>
+
+                <!-- Step 3: Measurements & Contact -->
+                <div class="form-step" data-step="3">
+                  <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" placeholder="Full name" id="name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" placeholder="your@email.com" id="email" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX" id="phone" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Do you have your measurements?</label>
+                    <div class="radio-group">
+                      <div class="radio-option">
+                        <input type="radio" name="measurements" value="yes" id="meas-yes">
+                        <label for="meas-yes" class="radio-label">
+                          <span class="radio-text">Yes, I have them</span>
+                        </label>
+                      </div>
+                      <div class="radio-option">
+                        <input type="radio" name="measurements" value="later" id="meas-later">
+                        <label for="meas-later" class="radio-label">
+                          <span class="radio-text">I'll provide later</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-navigation">
+                    <button class="btn btn-secondary" id="step3-back">← Back</button>
+                    <button class="btn btn-primary" id="step3-btn">Continue →</button>
+                  </div>
+                </div>
+
+                <!-- Step 4: Budget -->
+                <div class="form-step" data-step="4">
+                  <div class="form-group">
+                    <label>What's your budget range? *</label>
+                    <div class="budget-options">
+                      <div class="budget-option" data-budget="5000-10000">
+                        <div class="budget-amount">₹5K-10K</div>
+                        <div class="budget-label">Budget Friendly</div>
+                      </div>
+                      <div class="budget-option" data-budget="10000-25000">
+                        <div class="budget-amount">₹10K-25K</div>
+                        <div class="budget-label">Mid Range</div>
+                      </div>
+                      <div class="budget-option" data-budget="25000-50000">
+                        <div class="budget-amount">₹25K-50K</div>
+                        <div class="budget-label">Premium</div>
+                      </div>
+                      <div class="budget-option" data-budget="50000+">
+                        <div class="budget-amount">₹50K+</div>
+                        <div class="budget-label">Luxury</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Any additional requirements? (Optional)</label>
+                    <textarea placeholder="Special fabric preferences, embroidery details, delivery location, etc." id="additional-notes"></textarea>
+                  </div>
+
+                  <div class="form-navigation">
+                    <button class="btn btn-secondary" id="step4-back">← Back</button>
+                    <button class="btn btn-primary" id="submit-btn">Submit Request</button>
+                  </div>
+                </div>
+
+                <!-- Success Screen -->
+                <div class="success-screen" id="success-screen">
+                  <div class="success-checkmark">✓</div>
+                  <h2 class="success-title">Request Submitted!</h2>
+                  <p class="success-text">
+                    Thank you for choosing Sewna. We're reviewing your request and will match you with the perfect designer within 24 hours.
+                  </p>
+
+                  <div class="request-summary" id="request-summary">
+                    <!-- Summary will be populated by JavaScript -->
+                  </div>
+
+                  <div class="form-navigation">
+                    <button class="btn btn-primary" id="success-btn">Back to Home</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+          this.initFlow();
+        }
+
+        initFlow() {
+          let currentStep = 1;
+          let uploadedFiles = [];
+          let formData = {
+            outfitType: "",
+            deadline: "",
+            occasion: "",
+            description: "",
+            name: "",
+            email: "",
+            phone: "",
+            measurements: "",
+            budget: "",
+            additionalNotes: "",
+            images: [],
+          };
+
+          // Element references
+          const backBtn = this.querySelector("#back-btn");
+          const step1Btn = this.querySelector("#step1-btn");
+          const step2Back = this.querySelector("#step2-back");
+          const step2Btn = this.querySelector("#step2-btn");
+          const step3Back = this.querySelector("#step3-back");
+          const step3Btn = this.querySelector("#step3-btn");
+          const step4Back = this.querySelector("#step4-back");
+          const submitBtn = this.querySelector("#submit-btn");
+          const successBtn = this.querySelector("#success-btn");
+          const uploadArea = this.querySelector("#upload-area");
+          const fileInput = this.querySelector("#file-input");
+          const fileList = this.querySelector("#file-list");
+          const progressFill = this.querySelector("#progress-fill");
+          const successScreen = this.querySelector("#success-screen");
+          const requestSummary = this.querySelector("#request-summary");
+          const budgetOptions = this.querySelectorAll(".budget-option");
+
+          // Event listeners
+          backBtn.addEventListener("click", () =>
+            this.dispatchEvent(new CustomEvent("close-flow"))
+          );
+          successBtn.addEventListener("click", () =>
+            this.dispatchEvent(new CustomEvent("close-flow"))
+          );
+
+          step1Btn.addEventListener(
+            "click",
+            () => this.validateStep(1) && this.nextStep()
+          );
+          step2Back.addEventListener("click", () => this.prevStep());
+          step2Btn.addEventListener(
+            "click",
+            () => this.validateStep(2) && this.nextStep()
+          );
+          step3Back.addEventListener("click", () => this.prevStep());
+          step3Btn.addEventListener(
+            "click",
+            () => this.validateStep(3) && this.nextStep()
+          );
+          step4Back.addEventListener("click", () => this.prevStep());
+          submitBtn.addEventListener("click", () => this.submitRequest());
+
+          uploadArea.addEventListener("click", () => fileInput.click());
+          fileInput.addEventListener("change", (e) =>
+            this.handleFiles(e.target.files)
+          );
+
+          budgetOptions.forEach((option) => {
+            option.addEventListener("click", () => {
+              budgetOptions.forEach((opt) => opt.classList.remove("selected"));
+              option.classList.add("selected");
+              formData.budget = option.getAttribute("data-budget");
+            });
+          });
+
+          // Drag and drop events
+          uploadArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.style.borderColor = "#00b67f";
+          });
+
+          uploadArea.addEventListener("dragleave", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.style.borderColor = "#e0e0e0";
+          });
+
+          uploadArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.style.borderColor = "#e0e0e0";
+            this.handleFiles(e.dataTransfer.files);
+          });
+
+          // Step navigation methods
+          this.nextStep = () => {
+            if (!this.validateStep(currentStep)) return;
+
+            this.querySelector(
+              `.form-step[data-step="${currentStep}"]`
+            ).classList.remove("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.remove("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.add("completed");
+
+            currentStep++;
+
+            this.querySelector(
+              `.form-step[data-step="${currentStep}"]`
+            ).classList.add("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.add("active");
+
+            const progressWidth = (currentStep / 4) * 100;
+            progressFill.style.width = progressWidth + "%";
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
+
+          this.prevStep = () => {
+            this.querySelector(
+              `.form-step[data-step="${currentStep}"]`
+            ).classList.remove("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.remove("active");
+
+            currentStep--;
+
+            this.querySelector(
+              `.form-step[data-step="${currentStep}"]`
+            ).classList.add("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.add("active");
+            this.querySelector(
+              `.progress-step[data-step="${currentStep}"]`
+            ).classList.remove("completed");
+
+            const progressWidth = (currentStep / 4) * 100;
+            progressFill.style.width = progressWidth + "%";
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
+
+          this.validateStep = (step) => {
+            if (step === 1) {
+              const outfitType = this.querySelector(
+                'input[name="outfit-type"]:checked'
+              );
+              const deadline = this.querySelector("#deadline").value;
+              if (!outfitType || !deadline) {
+                alert("Please select outfit type and deadline");
+                return false;
+              }
+              formData.outfitType = outfitType.value;
+              formData.deadline = deadline;
+              formData.occasion = this.querySelector("#occasion").value;
+            } else if (step === 2) {
+              const description = this.querySelector("#description").value;
+              if (!description.trim()) {
+                alert("Please describe your vision");
+                return false;
+              }
+              formData.description = description;
+              formData.images = uploadedFiles;
+            } else if (step === 3) {
+              const name = this.querySelector("#name").value;
+              const email = this.querySelector("#email").value;
+              const phone = this.querySelector("#phone").value;
+              const measurements = this.querySelector(
+                'input[name="measurements"]:checked'
+              );
+
+              if (
+                !name.trim() ||
+                !email.trim() ||
+                !phone.trim() ||
+                !measurements
+              ) {
+                alert("Please fill all required fields");
+                return false;
+              }
+
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+              }
+
+              formData.name = name;
+              formData.email = email;
+              formData.phone = phone;
+              formData.measurements = measurements.value;
+            } else if (step === 4) {
+              if (!formData.budget) {
+                alert("Please select your budget range");
+                return false;
+              }
+              formData.additionalNotes =
+                this.querySelector("#additional-notes").value;
+            }
+            return true;
+          };
+
+          this.handleFiles = (files) => {
+            if (uploadedFiles.length + files.length > 5) {
+              alert("You can upload maximum 5 images");
+              return;
+            }
+
+            Array.from(files).forEach((file) => {
+              if (file.size > 10 * 1024 * 1024) {
+                alert(`${file.name} is too large. Maximum size is 10MB`);
+                return;
+              }
+
+              if (!file.type.startsWith("image/")) {
+                alert(`${file.name} is not an image file`);
+                return;
+              }
+
+              uploadedFiles.push(file);
+
+              const fileItem = document.createElement("div");
+              fileItem.className = "file-item";
+              fileItem.innerHTML = `
+                <span class="file-name">${file.name}</span>
+                <button class="file-remove">×</button>
+              `;
+              fileList.appendChild(fileItem);
+
+              fileItem
+                .querySelector(".file-remove")
+                .addEventListener("click", () => {
+                  uploadedFiles = uploadedFiles.filter(
+                    (f) => f.name !== file.name
+                  );
+                  fileItem.remove();
+                  if (uploadedFiles.length === 0) {
+                    fileList.classList.remove("active");
+                    uploadArea.classList.remove("has-files");
+                  }
+                });
+            });
+
+            if (uploadedFiles.length > 0) {
+              fileList.classList.add("active");
+              uploadArea.classList.add("has-files");
+            }
+          };
+          this.submitRequest = () => {
+            if (!this.validateStep(4)) return;
+
+            console.log("Form Data:", formData);
+
+            this.querySelector(`.form-step[data-step="4"]`).classList.remove(
+              "active"
+            );
+            successScreen.classList.add("active");
+
+            requestSummary.innerHTML = `
+              <div class="summary-item">
+                <span class="summary-label">Outfit Type:</span>
+                <span class="summary-value">${
+                  formData.outfitType.charAt(0).toUpperCase() +
+                  formData.outfitType.slice(1)
+                }</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Deadline:</span>
+                <span class="summary-value">${new Date(
+                  formData.deadline
+                ).toLocaleDateString("en-IN", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Budget Range:</span>
+                <span class="summary-value">₹${formData.budget}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Contact:</span>
+                <span class="summary-value">${formData.email}</span>
+              </div>
+              ${
+                formData.images.length > 0
+                  ? `
+              <div class="summary-item">
+                <span class="summary-label">Inspiration Images:</span>
+                <span class="summary-value">${formData.images.length} uploaded</span>
+              </div>
+              `
+                  : ""
+              }
+            `;
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
+        }
+      }
+      customElements.define("custom-request-flow", CustomRequestFlow);
+    </script>
+
+    <!-- Designer Flow JavaScript -->
+    <!-- SIMPLE Designer Flow JavaScript -->
+    <!-- Designer Flow JavaScript - Same Popup Style -->
+    <!-- Designer Flow JavaScript - Same Popup Style -->
+    <script>
+      // Designer Flow Functions
       function startDesignerFlow() {
-        // This would load the designer onboarding flow
-        document.getElementById("designer-flow").classList.remove("hidden");
+        console.log("Starting designer flow...");
+
+        const overlay = document.getElementById("request-flow-overlay");
+        const requestFlowContainer = document.querySelector(
+          ".request-flow-container"
+        );
+
+        if (!overlay || !requestFlowContainer) {
+          console.error("Overlay or container not found!");
+          return;
+        }
+
+        // Replace the content with designer flow
+        requestFlowContainer.innerHTML = `
+          <style>
+            /* Designer Flow Specific Styles */
+            .designer-flow {
+              min-height: 100vh;
+              padding: 20px;
+              background: #ffffff;
+            }
+
+            .designer-flow-container {
+              max-width: 800px;
+              margin: 0 auto;
+            }
+
+            .designer-flow-header {
+              text-align: center;
+              margin-bottom: 40px;
+              padding-top: 20px;
+            }
+
+            .designer-back-btn {
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              padding: 12px 24px;
+              background: transparent;
+              border: 2px solid #000000;
+              font-size: 14px;
+              cursor: pointer;
+              margin-bottom: 30px;
+              transition: all 0.3s;
+              font-weight: 500;
+              border-radius: 6px;
+            }
+
+            .designer-back-btn:hover {
+              background: #000000;
+              color: #ffffff;
+            }
+
+            .designer-flow-header h2 {
+              font-size: 36px;
+              font-weight: 300;
+              margin-bottom: 16px;
+              letter-spacing: -1px;
+            }
+
+            .designer-flow-header p {
+              font-size: 18px;
+              color: #666;
+            }
+
+            /* Progress Bar */
+            .designer-progress-bar {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 40px;
+              position: relative;
+            }
+
+            .designer-progress-bar::before {
+              content: '';
+              position: absolute;
+              top: 20px;
+              left: 0;
+              right: 0;
+              height: 2px;
+              background: #e0e0e0;
+              z-index: 0;
+            }
+
+            .designer-progress-fill {
+              position: absolute;
+              top: 20px;
+              left: 0;
+              height: 2px;
+              background: #00b67f;
+              z-index: 1;
+              transition: width 0.5s ease;
+            }
+
+            .designer-progress-step {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+              z-index: 2;
+              flex: 1;
+            }
+
+            .designer-step-circle {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background: #ffffff;
+              border: 3px solid #e0e0e0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: 600;
+              margin-bottom: 12px;
+              transition: all 0.3s;
+            }
+
+            .designer-progress-step.active .designer-step-circle {
+              background: #00b67f;
+              border-color: #00b67f;
+              color: #ffffff;
+              transform: scale(1.1);
+            }
+
+            .designer-progress-step.completed .designer-step-circle {
+              background: #00b67f;
+              border-color: #00b67f;
+              color: #ffffff;
+            }
+
+            .designer-step-label {
+              font-size: 13px;
+              color: #999;
+              text-align: center;
+              font-weight: 500;
+            }
+
+            .designer-progress-step.active .designer-step-label {
+              color: #000000;
+              font-weight: 600;
+            }
+
+            /* Form Steps */
+            .designer-form-step {
+              display: none;
+              background: #ffffff;
+              padding: 40px;
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+              animation: fadeIn 0.5s;
+            }
+
+            .designer-form-step.active {
+              display: block;
+            }
+
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+
+            .designer-form-group {
+              margin-bottom: 24px;
+            }
+
+            .designer-form-group label {
+              display: block;
+              font-size: 15px;
+              font-weight: 600;
+              margin-bottom: 8px;
+              color: #000000;
+            }
+
+            .designer-form-group input,
+            .designer-form-group textarea,
+            .designer-form-group select {
+              width: 100%;
+              padding: 12px;
+              border: 2px solid #e0e0e0;
+              font-size: 15px;
+              transition: all 0.3s;
+              font-family: inherit;
+              background: #fafafa;
+              border-radius: 6px;
+              box-sizing: border-box;
+            }
+
+            .designer-form-group input:focus,
+            .designer-form-group textarea:focus,
+            .designer-form-group select:focus {
+              outline: none;
+              border-color: #00b67f;
+              background: #ffffff;
+            }
+
+            .designer-form-group textarea {
+              resize: vertical;
+              min-height: 120px;
+            }
+
+            /* Specialty Options */
+            .designer-specialty-options {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 12px;
+            }
+
+            .designer-specialty-option {
+              position: relative;
+            }
+
+            .designer-specialty-option input {
+              position: absolute;
+              opacity: 0;
+            }
+
+            .designer-specialty-label {
+              display: block;
+              padding: 24px 20px;
+              border: 2px solid #e0e0e0;
+              cursor: pointer;
+              transition: all 0.3s;
+              text-align: center;
+              background: #fafafa;
+              border-radius: 6px;
+            }
+
+            .designer-specialty-option input:checked + .designer-specialty-label {
+              border-color: #00b67f;
+              background: rgba(0, 182, 127, 0.05);
+            }
+
+            .designer-specialty-text {
+              font-size: 16px;
+              font-weight: 500;
+            }
+
+            /* Price Range */
+            .designer-price-options {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+              gap: 12px;
+            }
+
+            .designer-price-option {
+              position: relative;
+            }
+
+            .designer-price-option input {
+              position: absolute;
+              opacity: 0;
+            }
+
+            .designer-price-label {
+              display: block;
+              padding: 20px 16px;
+              border: 2px solid #e0e0e0;
+              cursor: pointer;
+              transition: all 0.3s;
+              text-align: center;
+              background: #fafafa;
+              border-radius: 6px;
+            }
+
+            .designer-price-option input:checked + .designer-price-label {
+              border-color: #00b67f;
+              background: rgba(0, 182, 127, 0.05);
+            }
+
+            .designer-price-amount {
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 4px;
+            }
+
+            .designer-price-label {
+              font-size: 12px;
+              color: #666;
+            }
+
+            /* Navigation Buttons */
+            .designer-form-navigation {
+              display: flex;
+              gap: 12px;
+              margin-top: 32px;
+            }
+
+            .designer-btn {
+              flex: 1;
+              padding: 16px 24px;
+              font-size: 16px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s;
+              border: 2px solid #000000;
+              background: transparent;
+              border-radius: 6px;
+            }
+
+            .designer-btn-primary {
+              background: #00b67f;
+              border-color: #00b67f;
+              color: #ffffff;
+            }
+
+            .designer-btn-primary:hover {
+              background: #00a070;
+              border-color: #00a070;
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(0, 182, 127, 0.3);
+            }
+
+            .designer-btn-secondary:hover {
+              background: #000000;
+              color: #ffffff;
+            }
+
+            /* Success Screen */
+            .designer-success-screen {
+              display: none;
+              text-align: center;
+              padding: 60px 32px;
+              background: #ffffff;
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+            }
+
+            .designer-success-screen.active {
+              display: block;
+            }
+
+            .designer-success-checkmark {
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: #00b67f;
+              margin: 0 auto 32px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 40px;
+              animation: successPop 0.6s ease;
+            }
+
+            @keyframes successPop {
+              0% { transform: scale(0); }
+              50% { transform: scale(1.2); }
+              100% { transform: scale(1); }
+            }
+
+            .designer-success-title {
+              font-size: 36px;
+              font-weight: 300;
+              margin-bottom: 16px;
+            }
+
+            .designer-success-text {
+              font-size: 18px;
+              color: #666;
+              margin-bottom: 32px;
+              line-height: 1.6;
+            }
+
+            .designer-request-summary {
+              background: #fafafa;
+              padding: 24px;
+              margin: 24px 0;
+              text-align: left;
+              border: 1px solid #e0e0e0;
+              border-radius: 6px;
+            }
+
+            .designer-summary-item {
+              display: flex;
+              justify-content: space-between;
+              padding: 8px 0;
+              border-bottom: 1px solid #e0e0e0;
+            }
+
+            .designer-summary-item:last-child {
+              border-bottom: none;
+            }
+
+            .designer-summary-label {
+              font-weight: 600;
+              color: #666;
+            }
+
+            .designer-summary-value {
+              color: #000000;
+            }
+
+            @media (max-width: 768px) {
+              .designer-flow {
+                padding: 16px;
+              }
+
+              .designer-form-step {
+                padding: 24px 16px;
+              }
+
+              .designer-progress-bar {
+                margin-bottom: 32px;
+              }
+
+              .designer-step-label {
+                font-size: 11px;
+              }
+
+              .designer-specialty-options {
+                grid-template-columns: 1fr;
+              }
+
+              .designer-price-options {
+                grid-template-columns: repeat(2, 1fr);
+              }
+              
+              .designer-flow-header h2 {
+                font-size: 28px;
+              }
+              
+              .designer-form-navigation {
+                flex-direction: column;
+              }
+            }
+          </style>
+
+          <div class="designer-flow">
+            <div class="designer-flow-container">
+              <button class="designer-back-btn" id="designer-back-btn">
+                ← Back
+              </button>
+
+              <div class="designer-flow-header">
+                <h2>Join as a Designer</h2>
+                <p>Showcase your talent and connect with clients worldwide</p>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="designer-progress-bar">
+                <div class="designer-progress-fill" id="designer-progress-fill" style="width: 33.33%"></div>
+                <div class="designer-progress-step active" data-step="1">
+                  <div class="designer-step-circle">1</div>
+                  <div class="designer-step-label">Profile</div>
+                </div>
+                <div class="designer-progress-step" data-step="2">
+                  <div class="designer-step-circle">2</div>
+                  <div class="designer-step-label">Portfolio</div>
+                </div>
+                <div class="designer-progress-step" data-step="3">
+                  <div class="designer-step-circle">3</div>
+                  <div class="designer-step-label">Details</div>
+                </div>
+              </div>
+
+              <!-- Step 1: Profile -->
+              <div class="designer-form-step active" data-step="1">
+                <div class="designer-form-group">
+                  <label>Full Name *</label>
+                  <input 
+                    type="text" 
+                    id="designer-fullName" 
+                    placeholder="Your full name"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="designer-email" 
+                    placeholder="your@email.com"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    id="designer-phone" 
+                    placeholder="+91 XXXXX XXXXX"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Location *</label>
+                  <input 
+                    type="text" 
+                    id="designer-location" 
+                    placeholder="City, Country"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    required
+                  />
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Years of Experience *</label>
+                  <select 
+                    id="designer-experience"
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    required
+                  >
+                    <option value="">Select your experience level</option>
+                    <option value="0-2">0-2 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="6-10">6-10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                </div>
+
+                <div class="designer-form-navigation">
+                  <button class="designer-btn designer-btn-primary" id="designer-step1-btn">Continue →</button>
+                </div>
+              </div>
+
+              <!-- Step 2: Portfolio -->
+              <div class="designer-form-step" data-step="2">
+                <div class="designer-form-group">
+                  <label>Select your specialties (Choose at least 2) *</label>
+                  <div class="designer-specialty-options">
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="wedding" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">👰</div>
+                        <span class="designer-specialty-text">Wedding Wear</span>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="formal" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">👔</div>
+                        <span class="designer-specialty-text">Formal Wear</span>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="casual" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">👕</div>
+                        <span class="designer-specialty-text">Casual Wear</span>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="traditional" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">🎎</div>
+                        <span class="designer-specialty-text">Traditional</span>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="streetwear" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">🛹</div>
+                        <span class="designer-specialty-text">Streetwear</span>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-specialty-option">
+                      <input type="checkbox" name="designer-specialty" value="sustainable" />
+                      <div class="designer-specialty-label">
+                        <div class="w-8 h-8 mx-auto mb-2 text-gray-400">🌱</div>
+                        <span class="designer-specialty-text">Sustainable</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Portfolio Links (Optional)</label>
+                  <p class="text-sm text-gray-500 mb-4">Add links to your Instagram, Behance, or personal website</p>
+                  <div id="designer-portfolio-links" class="space-y-3">
+                    <input 
+                      type="url" 
+                      placeholder="https://instagram.com/yourprofile"
+                      class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                    />
+                  </div>
+                  <button 
+                    id="add-portfolio-link"
+                    class="mt-3 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all text-sm font-medium"
+                  >
+                    + Add Another Link
+                  </button>
+                </div>
+
+                <div class="designer-form-navigation">
+                  <button class="designer-btn designer-btn-secondary" id="designer-step2-back">← Back</button>
+                  <button class="designer-btn designer-btn-primary" id="designer-step2-btn">Continue →</button>
+                </div>
+              </div>
+
+              <!-- Step 3: Details -->
+              <div class="designer-form-step" data-step="3">
+                <div class="designer-form-group">
+                  <label>About You *</label>
+                  <textarea 
+                    id="designer-bio"
+                    rows="4"
+                    placeholder="Tell clients about your design philosophy, experience, and what makes your work unique..."
+                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="designer-form-group">
+                  <label>Price Range (Per Project) *</label>
+                  <div class="designer-price-options">
+                    <label class="designer-price-option">
+                      <input type="radio" name="designer-priceRange" value="5000-15000" />
+                      <div class="designer-price-label">
+                        <div class="designer-price-amount">₹5K-15K</div>
+                        <div>Budget Friendly</div>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-price-option">
+                      <input type="radio" name="designer-priceRange" value="15000-30000" />
+                      <div class="designer-price-label">
+                        <div class="designer-price-amount">₹15K-30K</div>
+                        <div>Mid Range</div>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-price-option">
+                      <input type="radio" name="designer-priceRange" value="30000-50000" />
+                      <div class="designer-price-label">
+                        <div class="designer-price-amount">₹30K-50K</div>
+                        <div>Premium</div>
+                      </div>
+                    </label>
+                    
+                    <label class="designer-price-option">
+                      <input type="radio" name="designer-priceRange" value="50000+" />
+                      <div class="designer-price-label">
+                        <div class="designer-price-amount">₹50K+</div>
+                        <div>Luxury</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6">
+                  <label class="flex items-start cursor-pointer">
+                    <input 
+                      type="checkbox" 
+                      id="designer-availableForWork"
+                      checked
+                      class="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary"
+                    />
+                    <div class="ml-3">
+                      <span class="text-sm font-medium text-gray-900">I'm currently available for new projects</span>
+                      <p class="text-xs text-gray-500 mt-1">This helps clients know if you're accepting work</p>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="designer-form-navigation">
+                  <button class="designer-btn designer-btn-secondary" id="designer-step3-back">← Back</button>
+                  <button class="designer-btn designer-btn-primary" id="designer-submit-btn">Submit Application</button>
+                </div>
+              </div>
+
+              <!-- Success Screen -->
+              <div class="designer-success-screen" id="designer-success-screen">
+                <div class="designer-success-checkmark">✓</div>
+                <h2 class="designer-success-title">Application Submitted!</h2>
+                <p class="designer-success-text">
+                  Thank you for joining SEWNA! We'll review your application and get back to you within 48 hours.
+                </p>
+
+                <div class="designer-request-summary" id="designer-request-summary">
+                  <!-- Summary will be populated by JavaScript -->
+                </div>
+
+                <div class="designer-form-navigation">
+                  <button class="designer-btn designer-btn-primary" id="designer-success-btn">Back to Home</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Show the overlay
+        overlay.classList.remove("hidden");
         document.body.style.overflow = "hidden";
+
+        // Initialize designer flow
+        initDesignerFlow();
       }
 
+      function initDesignerFlow() {
+        let currentStep = 1;
+        let formData = {
+          fullName: "",
+          email: "",
+          phone: "",
+          location: "",
+          experience: "",
+          specialties: [],
+          portfolioLinks: [],
+          bio: "",
+          priceRange: "",
+          availableForWork: true,
+        };
+
+        // Element references
+        const backBtn = document.getElementById("designer-back-btn");
+        const step1Btn = document.getElementById("designer-step1-btn");
+        const step2Back = document.getElementById("designer-step2-back");
+        const step2Btn = document.getElementById("designer-step2-btn");
+        const step3Back = document.getElementById("designer-step3-back");
+        const submitBtn = document.getElementById("designer-submit-btn");
+        const successBtn = document.getElementById("designer-success-btn");
+        const addLinkBtn = document.getElementById("add-portfolio-link");
+        const progressFill = document.getElementById("designer-progress-fill");
+        const successScreen = document.getElementById(
+          "designer-success-screen"
+        );
+        const requestSummary = document.getElementById(
+          "designer-request-summary"
+        );
+
+        // Event listeners
+        backBtn.addEventListener("click", closeDesignerFlow);
+        successBtn.addEventListener("click", closeDesignerFlow);
+
+        step1Btn.addEventListener("click", () => validateStep(1) && nextStep());
+        step2Back.addEventListener("click", prevStep);
+        step2Btn.addEventListener("click", () => validateStep(2) && nextStep());
+        step3Back.addEventListener("click", prevStep);
+        submitBtn.addEventListener("click", submitDesignerForm);
+
+        addLinkBtn.addEventListener("click", addPortfolioLink);
+
+        function nextStep() {
+          if (!validateStep(currentStep)) return;
+
+          document
+            .querySelector(`.designer-form-step[data-step="${currentStep}"]`)
+            .classList.remove("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.remove("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.add("completed");
+
+          currentStep++;
+
+          document
+            .querySelector(`.designer-form-step[data-step="${currentStep}"]`)
+            .classList.add("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.add("active");
+
+          const progressWidth = (currentStep / 3) * 100;
+          progressFill.style.width = progressWidth + "%";
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function prevStep() {
+          document
+            .querySelector(`.designer-form-step[data-step="${currentStep}"]`)
+            .classList.remove("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.remove("active");
+
+          currentStep--;
+
+          document
+            .querySelector(`.designer-form-step[data-step="${currentStep}"]`)
+            .classList.add("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.add("active");
+          document
+            .querySelector(
+              `.designer-progress-step[data-step="${currentStep}"]`
+            )
+            .classList.remove("completed");
+
+          const progressWidth = (currentStep / 3) * 100;
+          progressFill.style.width = progressWidth + "%";
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function validateStep(step) {
+          if (step === 1) {
+            const fullName = document
+              .getElementById("designer-fullName")
+              .value.trim();
+            const email = document
+              .getElementById("designer-email")
+              .value.trim();
+            const phone = document
+              .getElementById("designer-phone")
+              .value.trim();
+            const location = document
+              .getElementById("designer-location")
+              .value.trim();
+            const experience = document.getElementById(
+              "designer-experience"
+            ).value;
+
+            if (!fullName || !email || !phone || !location || !experience) {
+              alert("Please fill in all required fields");
+              return false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              alert("Please enter a valid email address");
+              return false;
+            }
+
+            formData.fullName = fullName;
+            formData.email = email;
+            formData.phone = phone;
+            formData.location = location;
+            formData.experience = experience;
+          } else if (step === 2) {
+            const selectedSpecialties = document.querySelectorAll(
+              'input[name="designer-specialty"]:checked'
+            );
+            if (selectedSpecialties.length < 2) {
+              alert("Please select at least 2 specialties");
+              return false;
+            }
+            formData.specialties = Array.from(selectedSpecialties).map(
+              (cb) => cb.value
+            );
+            formData.portfolioLinks = Array.from(
+              document.querySelectorAll(
+                '#designer-portfolio-links input[type="url"]'
+              )
+            )
+              .map((input) => input.value.trim())
+              .filter((link) => link !== "");
+          } else if (step === 3) {
+            const bio = document.getElementById("designer-bio").value.trim();
+            const priceRange = document.querySelector(
+              'input[name="designer-priceRange"]:checked'
+            );
+
+            if (!bio) {
+              alert("Please tell us about yourself");
+              return false;
+            }
+
+            if (bio.length < 50) {
+              alert(
+                "Please provide a more detailed bio (at least 50 characters)"
+              );
+              return false;
+            }
+
+            if (!priceRange) {
+              alert("Please select your price range");
+              return false;
+            }
+
+            formData.bio = bio;
+            formData.priceRange = priceRange.value;
+            formData.availableForWork = document.getElementById(
+              "designer-availableForWork"
+            ).checked;
+          }
+          return true;
+        }
+
+        function addPortfolioLink() {
+          const container = document.getElementById("designer-portfolio-links");
+          const currentLinks = container.querySelectorAll('input[type="url"]');
+
+          if (currentLinks.length >= 5) {
+            alert("Maximum 5 portfolio links allowed");
+            return;
+          }
+
+          const newInput = document.createElement("input");
+          newInput.type = "url";
+          newInput.placeholder = "https://yourwebsite.com";
+          newInput.className =
+            "w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none";
+
+          container.appendChild(newInput);
+        }
+
+        function submitDesignerForm() {
+          if (!validateStep(3)) return;
+
+          console.log("Designer Application Data:", formData);
+
+          document
+            .querySelector(`.designer-form-step[data-step="3"]`)
+            .classList.remove("active");
+          successScreen.classList.add("active");
+
+          requestSummary.innerHTML = `
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Name:</span>
+              <span class="designer-summary-value">${formData.fullName}</span>
+            </div>
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Email:</span>
+              <span class="designer-summary-value">${formData.email}</span>
+            </div>
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Experience:</span>
+              <span class="designer-summary-value">${
+                formData.experience
+              } years</span>
+            </div>
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Specialties:</span>
+              <span class="designer-summary-value">${formData.specialties.join(
+                ", "
+              )}</span>
+            </div>
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Price Range:</span>
+              <span class="designer-summary-value">₹${
+                formData.priceRange
+              }</span>
+            </div>
+            ${
+              formData.portfolioLinks.length > 0
+                ? `
+            <div class="designer-summary-item">
+              <span class="designer-summary-label">Portfolio Links:</span>
+              <span class="designer-summary-value">${formData.portfolioLinks.length} added</span>
+            </div>
+            `
+                : ""
+            }
+          `;
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+
+      function closeDesignerFlow() {
+        const overlay = document.getElementById("request-flow-overlay");
+        if (overlay) {
+          overlay.classList.add("hidden");
+          document.body.style.overflow = "auto";
+
+          // Reset to client flow for next time
+          const requestFlowContainer = document.querySelector(
+            ".request-flow-container"
+          );
+          requestFlowContainer.innerHTML = `<custom-request-flow id="custom-request-flow"></custom-request-flow>`;
+        }
+      }
+
+      console.log("✅ Designer flow loaded with proper CSS!");
+    </script>
+
+    <!-- Main JavaScript -->
+    <script>
+      // Initialize feather icons
+      feather.replace();
+
+      // Client Flow Functions
       function startClientFlow() {
-        // Show the request flow overlay
         const overlay = document.getElementById("request-flow-overlay");
         overlay.classList.remove("hidden");
         document.body.style.overflow = "hidden";
 
-        // Add event listener to handle closing the flow
         const requestFlow = document.getElementById("custom-request-flow");
         if (requestFlow) {
           requestFlow.addEventListener("close-flow", function () {
@@ -540,14 +2670,15 @@
       }
 
       // Close overlay when clicking outside the container
-      document
-        .getElementById("request-flow-overlay")
-        .addEventListener("click", function (e) {
+      const overlay = document.getElementById("request-flow-overlay");
+      if (overlay) {
+        overlay.addEventListener("click", function (e) {
           if (e.target === this) {
             this.classList.add("hidden");
             document.body.style.overflow = "auto";
           }
         });
+      }
     </script>
   </body>
 </html>
